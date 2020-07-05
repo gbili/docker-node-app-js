@@ -47,3 +47,24 @@ You only require access to the image from your docker installation. If you are u
 So make sure to join the `nginx-proxy` external network
 
 Then you need to carefully specify the external volume name created by `git-server-hooks`, usually: `git-server-hooks_node-apps`.
+
+## Resetting
+
+```sh
+# login to docker remote host
+ssh ubuntu@...
+
+cd $ws/blog
+docker rm -f blog
+
+cd $ws/git-server-hooks
+./flush-start.sh
+
+cd $ws/blog
+docker-compose up -d
+
+exit
+
+# from local blog
+git push live
+```
