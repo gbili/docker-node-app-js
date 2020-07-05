@@ -9,13 +9,13 @@ services:
       LETSENCRYPT_HOST: guillermo.at
       LETSENCRYPT_EMAIL: mail@guillermo.at
     volumes:
-      - node-server:/node-server
+      - node-apps:/node-server
     restart: always
 
 volumes:
   node-server:
     external:
-      name: git-server-hooks_node-server
+      name: git-server-hooks_node-apps
 
 
 networks:
