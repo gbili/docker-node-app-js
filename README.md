@@ -1,19 +1,22 @@
-# docker-node-app
+# node app js
 
-To build the image you have to pass `ID_RSA_PUB` argument. One way of creating such an argument is to pass it as a variable to your build command:
+This is meant to run a node server container. Relies on an external volume.
 
-```bash
-# create the variable from a file
-cd my-node-app
-mkdir .ssh
-cp ~/.ssh/id_rsa.pub .ssh/
+It can be used in conjunction with `git-server-hooks` where both share the volume `node-apps`.
 
-# pass it to docker build command
-sudo docker build --build-arg ID_RSA_PUB=$RSAPUB --build-arg LOCAL_USER=g --build-arg VIRTUAL_HOST=crystalball.at .
-```
+## Build
 
-Let's say you have created an image from this docker file, named `gbili/node-blog`, then if you want to run a container created with this image in an external network, like for example `nginx-proxy`, you can:
+You can already specify `package.json`'s parent dirname with: `APP_DIRNAME` arg.
 
-```bash
-sudo docker run -itd --network=nginx-proxy gbili/node-blog
-```
+## Installation
+
+You only require access to the image from your docker installation. If you are using `docker-compose` thigs get easier, since you can reuse `docker-compse.yml` by changin the `envorinoment:`:
+
+- `APP_DIRNAME`: name of `package.json`'s parent dir.
+- `VIRTUAL_HOST`: depends on `nginx-proxy`: `example.com` of where you want to server your app.
+- `LETSENCRYPT_HOST`: depends on let's encrypt certbot: `example.com` of where you want to get ssl.
+- `LETSENCRYPT_EMAIL`: depends on let's encrypt certbot: `mail@example.com`
+
+So make sure to join the `nginx-proxy` external network
+
+Then you need to carefully specify the external volume name created by `git-server-hooks`, usually: `git-server-hooks_node-apps`.
