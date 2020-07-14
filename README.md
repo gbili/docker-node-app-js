@@ -37,7 +37,7 @@ sudo docker build --build-arg COMMON_GROUP_GID=1002 -t docker.zivili.ch/gbili/no
 
 ## Installation
 
-You only require access to the image from your docker installation. If you are using `docker-compose` thigs get easier, since you can reuse `docker-compse.yml` by changin the `envorinoment:`:
+You only require access to the image from your docker installation. If you are using `docker-compose` thigs get easier, since you can reuse `docker-compse.yml` by changing the `envorinoment:` section:
 
 - `APP_DIRNAME`: name of `package.json`'s parent dir.
 - `VIRTUAL_HOST`: depends on `nginx-proxy`: `example.com` of where you want to server your app.
