@@ -3,7 +3,9 @@ version: '3.7'
 services:
   blog:
     image: docker.zivili.ch/gbili/node-app-js:0.0.1
+    container_name: blog
     environment:
+      APP_PORT: 3100
       APP_DIRNAME: blog
       VIRTUAL_HOST: guillermo.at
       LETSENCRYPT_HOST: guillermo.at
@@ -13,7 +15,7 @@ services:
     restart: always
 
 volumes:
-  node-server:
+  node-apps:
     external:
       name: git-server-hooks_node-apps
 

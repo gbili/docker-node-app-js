@@ -28,6 +28,6 @@ RUN addgroup node ${COMMON_GROUP}
 # should output: <COMMON_GROUP>:x:<COMMMON_GROUP_GID>:node
 RUN getent group ${COMMON_GROUP}
 
-USER node
+USER root
 
 ENTRYPOINT ["sh", "-c", "${START_SCRIPT_DIR}/start.sh"]

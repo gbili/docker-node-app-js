@@ -54,11 +54,8 @@ Then you need to carefully specify the external volume name created by `git-serv
 # login to docker remote host
 ssh ubuntu@...
 
-cd $ws/blog
-docker rm -f blog
-
-cd $ws/git-server-hooks
-./flush-start.sh
+# assuming you correctly installed dotfiles
+flush-start -d blog
 
 cd $ws/blog
 docker-compose up -d
